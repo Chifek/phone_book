@@ -1,0 +1,11 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ruslan
+ * Date: 28.07.20
+ * Time: 2:01
+ */
+
+return array(
+    'secretKey' => '6asdae3dsadffAAAALF-fhdgsf6Vdsfs6fs'
+);

@@ -7,6 +7,7 @@
  */
 
 require_once 'db.php';
+$configs = include('config.php');
 
 $db = new Database();
 session_start();
@@ -196,7 +197,7 @@ if (isset($_POST['action']) && $_POST['action'] == "reg") {
         echo "Please check the the captcha form.";
         exit;
     }
-    $secretKey = "6LfuBrcZAAAAALF-s3KUQ6ZiLXq2gOYkkLnOekBF";
+    $secretKey = $configs['secretKey'];
     $ip = $_SERVER['REMOTE_ADDR'];
     $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) . '&response=' . urlencode($captcha);
     $response = file_get_contents($url);
@@ -257,7 +258,7 @@ if (isset($_POST['action']) && $_POST['action'] == "login") {
         echo "Please check the the captcha form.";
         exit;
     }
-    $secretKey = "6LfuBrcZAAAAALF-s3KUQ6ZiLXq2gOYkkLnOekBF";
+    $secretKey = $configs['secretKey'];
     $ip = $_SERVER['REMOTE_ADDR'];
     $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) . '&response=' . urlencode($captcha);
     $response = file_get_contents($url);

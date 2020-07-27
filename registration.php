@@ -16,6 +16,8 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script>
 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -63,6 +65,9 @@
             <input type="text" id="re_password" class="fadeIn third" name="re_password" placeholder="re enter password"
                    required>
             <p id="error" style="color:red"></p>
+            <div style="padding-left: 70px;">
+                <div class="g-recaptcha" data-sitekey="6LfuBrcZAAAAAA4HkwF-W9hpsrF-dtmJpvrNyER3"></div>
+            </div>
             <input type="submit" class="fadeIn fourth" name="add" id="add" value="Register">
         </form>
         <div id="formFooter">

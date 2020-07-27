@@ -188,6 +188,24 @@ if (isset($_POST['action']) && $_POST['action'] == "reg") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $re_password = $_POST['re_password'];
+
+    if (isset($_POST['g-recaptcha-response'])) {
+        $captcha = $_POST['g-recaptcha-response'];
+    }
+    if (!$captcha) {
+        echo "Please check the the captcha form.";
+        exit;
+    }
+    $secretKey = "6LfuBrcZAAAAALF-s3KUQ6ZiLXq2gOYkkLnOekBF1q3e";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) . '&response=' . urlencode($captcha);
+    $response = file_get_contents($url);
+    $responseKeys = json_decode($response, true);
+    if (!$responseKeys["success"]) {
+        echo "You are spammer ! Get the @$%K out";
+        exit;
+    }
+
     try {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "Invalid email. Please try again";

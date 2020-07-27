@@ -60,7 +60,7 @@ if (isset($_POST['action']) && $_POST['action'] == "add") {
         if (is_dir($dir) === false) {
             mkdir($dir);
         }
-
+        $filename = $_FILES['file']['name'];
         $location = $dir . '/' . $filename;
 
         $uploadOk = 1;

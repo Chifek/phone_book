@@ -179,7 +179,7 @@ if ($_SESSION["auth"] === null && $_SESSION['user_id'] === null) {
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="/"><?php session_start();
+    <a class="navbar-brand" href="/"><?php
         if ($_SESSION["auth"] && $_SESSION['user_id'] !== null && $_SESSION['user_name'] !== null) {
             echo $_SESSION["user_name"];
         }

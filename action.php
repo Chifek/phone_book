@@ -55,36 +55,40 @@ if (isset($_POST['action']) && $_POST['action'] == "add") {
     $lastName = $_POST['last_name'];
     $phone = $_POST['phone_number'];
     $userId = $_SESSION["user_id"];
-    $filename = $_FILES['file']['name'];
-
-    $dir = "uploads/" . $userId;
-    if (is_dir($dir) === false) {
-        mkdir($dir);
-    }
-
-    $location = $dir . '/' . $filename;
-
-    $uploadOk = 1;
-    $imageFileType = pathinfo($location, PATHINFO_EXTENSION);
-    $valid_extensions = array("jpg", "png");
-    if (!in_array(strtolower($imageFileType), $valid_extensions)) {
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk == 0) {
-        echo 'Need only *.jpg or *.png extension';
-    } else {
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-            if ($_SESSION["user_id"]) {
-                $db->insert($firstName, $lastName, $_SESSION["user_id"], $location, $phone);
-            } else {
-                echo 'Authorisation error';
-            }
-            echo $location;
-        } else {
-            echo "Can't upload image. Something went wrong";
+    if (isset($_FILES['file']['name'])) {
+        $dir = "uploads/" . $userId;
+        if (is_dir($dir) === false) {
+            mkdir($dir);
         }
+
+        $location = $dir . '/' . $filename;
+
+        $uploadOk = 1;
+        $imageFileType = pathinfo($location, PATHINFO_EXTENSION);
+        $valid_extensions = array("jpg", "png");
+        if (!in_array(strtolower($imageFileType), $valid_extensions)) {
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            echo 'Need only *.jpg or *.png extension';
+        } else {
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+                if ($_SESSION["user_id"]) {
+                    $db->insert($firstName, $lastName, $_SESSION["user_id"], $location, $phone);
+                } else {
+                    echo 'Authorisation error';
+                }
+                echo $location;
+            } else {
+                echo "Can't upload image. Something went wrong";
+            }
+        }
+    } else {
+        $filename = 'image.png';
+        $db->insert($firstName, $lastName, $_SESSION["user_id"], $filename, $phone);
     }
+
 }
 
 /**

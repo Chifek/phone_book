@@ -203,7 +203,7 @@ if ($_SESSION["auth"] === null && $_SESSION['user_id'] === null) {
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <?php session_start();
+            <?php
             if ($_SESSION["auth"] && $_SESSION['user_id'] !== null && $_SESSION['user_name'] !== null) {
                 echo $_SESSION["user_name"];
             }

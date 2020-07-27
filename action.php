@@ -184,7 +184,7 @@ function str_from_numbers($value)
  * Registration new user
  */
 if (isset($_POST['action']) && $_POST['action'] == "reg") {
-    $login = $_POST['login'];
+    $login = strtolower($_POST['login']);
     $email = $_POST['email'];
     $password = $_POST['password'];
     $re_password = $_POST['re_password'];
@@ -247,7 +247,7 @@ if (isset($_POST['action']) && $_POST['action'] == "reg") {
  * Login user
  */
 if (isset($_POST['action']) && $_POST['action'] == "login") {
-    $login = $_POST['login'];
+    $login = strtolower($_POST['login']);
     $password = $_POST['password'];
 
     if (isset($_POST['g-recaptcha-response'])) {
